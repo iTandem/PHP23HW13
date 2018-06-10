@@ -1,10 +1,10 @@
 <?php
     require_once 'task.php';
     
-    $host = 'localhost:8889';
-    $dbname = 'netology';
-    $user = 'root';
-    $pass = 'root';
+    $host = 'localhost';
+    $dbname = 'cibizov';
+    $user = 'cibizov';
+    $pass = 'neto1762';
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ];
