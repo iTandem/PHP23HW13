@@ -12,28 +12,28 @@
     $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
     $pdo = new PDO($dsn, $user, $pass, $options);
     
-    $descr = $_POST['description'] ?? '';
-    $doneId = $_POST['done'] ?? '';
-    $deleteId = $_POST['delete'] ?? '';
-    $editId = $_POST['editId'] ?? '';
+    $descr = isset($_POST['description']) ? $_POST['description'] : '';
+    $doneId = isset($_POST['done']) ? $_POST['done'] : '';
+    $deleteId = isset($_POST['delete']) ? $_POST['delete'] : '';
+    $editId = isset($_POST['editId']) ? $_POST['editId'] : '';
     
     $task = new Task($pdo);
     
-    if($descr) {
-        if($editId) {
+    if ($descr) {
+        if ($editId) {
             $task->updateTask($editId, $descr);
         } else {
             $task->insertTask($descr);
         }
     }
-    if($doneId) {
+    if ($doneId) {
         $task->completeTask($doneId);
     }
-    if($deleteId) {
+    if ($deleteId) {
         $task->deleteTask($deleteId);
     }
     
-    $columnOrder = $_POST['column'] ?? 'id asc';
+    $columnOrder = isset($_POST['column']) ? $_POST['column'] : 'id asc';
     $queryResult = $task->findAllOrderBy($columnOrder);
     
     /**
